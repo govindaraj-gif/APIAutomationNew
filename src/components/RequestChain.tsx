@@ -669,8 +669,7 @@ const RequestChain: React.FC<RequestChainProps> = ({
                                                 >
                                                   <span>{path}</span>
                                                   <span className="text-gray-500">
-                                                    {/* {getValueFromPath(response?.data, path)} */} 
-                                                    {JSON.stringify(getValueFromPath(response?.data, path))}
+                                                    {getValueFromPath(response?.data, path)} 
                                                   </span>
                                                 </button>
                                               ))}
@@ -678,8 +677,7 @@ const RequestChain: React.FC<RequestChainProps> = ({
                                           )}
                                         </div>
                                         <div className="w-32 text-sm text-gray-500 truncate">
-                                          {/* {getValueFromPath(response?.data, value.path)} */}
-                                          {value.path && response?.data ? JSON.stringify(getValueFromPath(response.data, value.path)) : ''}
+                                          {getValueFromPath(response?.data, value.path)}
                                         </div>
                                         {value.isValid !== undefined && (
                                           <div className="w-6">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Plus, MoreVertical, Upload, FolderTree, Trash2, Edit, Move } from 'lucide-react';
 import { Collection, CollectionRequest, Request } from '../types';
 import CollectionModal from './CollectionModal';
@@ -178,10 +178,27 @@ const CollectionsSidebar: React.FC<CollectionsSidebarProps> = ({
     setSelectedRequest(null);
   };
 
+  const menuRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setShowMenu(null); // close the menu
+      }
+    };
+  
+    if (showMenu) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+  
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showMenu]);
+
   return (
     <div className="w-64 bg-white border-r border-gray-200 flex flex-col">
       <div className="p-4 border-b border-gray-200">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-3">
           <h2 className="text-lg font-semibold">Collections</h2>
           <div className="flex items-center gap-2">
             <button
@@ -218,7 +235,7 @@ const CollectionsSidebar: React.FC<CollectionsSidebarProps> = ({
               >
                 {collection.name}
               </button>
-              <div className="relative">
+              <div className="relative" ref={menuRef}>
                 <button
                   onClick={() => setShowMenu(showMenu === collection.id ? null : collection.id)}
                   className="p-1 text-gray-400 hover:text-gray-600 opacity-0 group-hover:opacity-100"

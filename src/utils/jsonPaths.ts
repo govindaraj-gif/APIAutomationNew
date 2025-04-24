@@ -26,10 +26,21 @@ export function getAllPaths(obj: any, parentPath = ''): string[] {
 
 export function getValueFromPath(obj: any, path: string): any {
   try {
-    return path.split(/[.\[\]]/).filter(Boolean).reduce((current, part) => {
-      return current?.[part];
-    }, obj);
+    const result = path
+      .split(/[.\[\]]/)
+      .filter(Boolean)
+      .reduce((current, part) => current?.[part], obj);
+
+    if (typeof result === 'object' && result !== null) {
+      return Array.isArray(result)
+        ? `[${result.join(', ')}]`
+        : Object.entries(result)
+            .map(([key, val]) => `${key}: ${val}`)
+            .join(', ');
+    }
+
+    return result ?? '';
   } catch {
-    return undefined;
+    return '';
   }
 }

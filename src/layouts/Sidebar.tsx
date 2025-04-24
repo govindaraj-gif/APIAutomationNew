@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { History, FolderTree, Database } from 'lucide-react';
-import DataRepoModal from './DataRepoModal';
+import DataRepoModal from '../components/DataRepoModal';
 
 interface SidebarProps {
   onCollectionsClick: () => void;

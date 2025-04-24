@@ -3,7 +3,7 @@ import { Send, ChevronDown, History, Save, Share2, Plus, FolderTree } from 'luci
 import RequestPanel from './components/RequestPanel';
 import ResponsePanel from './components/ResponsePanel';
 import RequestChain from './components/RequestChain';
-import Sidebar from './components/Sidebar';
+import Sidebar from './layouts/Sidebar';
 import CollectionsSidebar from './components/CollectionsSidebar';
 import ImportModal from './components/ImportModal';
 import RequestModal from './components/RequestModal';
@@ -19,6 +19,7 @@ import {
   RequestError
 } from './utils/requestDefaults';
 import { v4 as uuidv4 } from 'uuid';
+import TopBar from './layouts/topbar';
 
 const COLLECTIONS_STORAGE_KEY = 'api_collections';
 
@@ -359,49 +360,12 @@ function App() {
         />
       )}
       <main className="flex-1 flex flex-col">
-        <header className="bg-white border-b border-gray-200 p-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <h1 className="text-xl font-semibold text-gray-800">API Testing</h1>
-              <div className="flex rounded-lg bg-gray-100 p-1">
-                <button
-                  className={`px-4 py-1.5 rounded-md text-sm font-medium transition-colors ${
-                    activeTab === 'single'
-                      ? 'bg-white text-gray-800 shadow'
-                      : 'text-gray-600 hover:text-gray-800'
-                  }`}
-                  onClick={() => setActiveTab('single')}
-                >
-                  Single Request
-                </button>
-                <button
-                  className={`px-4 py-1.5 rounded-md text-sm font-medium transition-colors ${
-                    activeTab === 'chain'
-                      ? 'bg-white text-gray-800 shadow'
-                      : 'text-gray-600 hover:text-gray-800'
-                  }`}
-                  onClick={() => setActiveTab('chain')}
-                >
-                  Request Chain
-                </button>
-              </div>
-            </div>
-            <div className="flex items-center space-x-2">
-              <button 
-                onClick={() => setShowSaveRequestModal(true)}
-                className="px-3 py-1.5 text-sm text-gray-600 hover:text-gray-800 flex items-center gap-1"
-              >
-                <Save size={16} />
-                Save
-              </button>
-              <button className="px-3 py-1.5 text-sm text-gray-600 hover:text-gray-800 flex items-center gap-1">
-                <Share2 size={16} />
-                Share
-              </button>
-            </div>
-          </div>
-        </header>
-
+      <TopBar
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        setShowSaveRequestModal={setShowSaveRequestModal}
+      />
+      
         <div className="flex-1 overflow-auto p-4">
           {activeTab === 'single' ? (
             <>
