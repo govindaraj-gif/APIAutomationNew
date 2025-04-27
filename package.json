@@ -12,6 +12,7 @@
   "dependencies": {
     "@faker-js/faker": "^8.4.1",
     "@hello-pangea/dnd": "^16.5.0",
+    "@heroicons/react": "^2.2.0",
     "fuzzysort": "^2.0.4",
     "graphql": "^16.8.1",
     "graphql-tag": "^2.12.6",
@@ -22,6 +23,7 @@
     "prettier": "^3.2.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-icons": "^5.5.0",
     "react-router-dom": "^7.5.2",
     "swagger2openapi": "^7.0.0",
     "uuid": "^9.0.1",

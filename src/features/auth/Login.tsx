@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import authService from '../../services/auth/auth-service';
 
 interface AuthModalProps {
-  onClose: () => void;
-  onLoginSuccess: (user: any) => void;
+  // onClose: () => void;
+  // onLoginSuccess: (user: any) => void;
 }
 
-const AuthModal: React.FC<AuthModalProps> = ({ onClose, onLoginSuccess }) => {
+const AuthModal: React.FC<AuthModalProps> = ({}) => {
   const [isLogin, setIsLogin] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -49,8 +49,8 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose, onLoginSuccess }) => {
 
       setSuccessMessage('Direct login successful! Redirecting...');
       setTimeout(() => {
-        onLoginSuccess(user);
-        onClose();
+        // onLoginSuccess(user);
+        // onClose();
       }, 1500);
     } catch (err: any) {
       setError(`Direct login failed: ${err.message}`);
@@ -96,8 +96,8 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose, onLoginSuccess }) => {
       }
 
       setTimeout(() => {
-        onLoginSuccess(user);
-        onClose();
+        // onLoginSuccess(user);
+        // onClose();
       }, 1500);
     } catch (err: any) {
       let errorMessage = 'Authentication failed.';

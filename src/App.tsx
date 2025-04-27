@@ -19,9 +19,10 @@ import {
   RequestError
 } from './utils/requestDefaults';
 import { v4 as uuidv4 } from 'uuid';
-import TopBar from './layouts/Topbar';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import AuthModal, { Login } from './features/auth/Login';
+import TopBar from './features/api-test/Topbar';
+import TopNavBar from './layouts/TopNavBar';
 
 const COLLECTIONS_STORAGE_KEY = 'api_collections';
 
@@ -352,73 +353,74 @@ function App() {
       <Route path="/" element={<Navigate to="/login" replace />} />
       <Route path="/login" element={<AuthModal />} />
       <Route path="/api-test" element={
-        <div className="flex h-screen bg-gray-50">
-        <Sidebar onCollectionsClick={() => setShowCollections(!showCollections)} />
-        {showCollections && (
-          <CollectionsSidebar
-            collections={collections}
-            onCollectionCreate={handleCollectionCreate}
-            onCollectionUpdate={handleCollectionUpdate}
-            onCollectionDelete={handleCollectionDelete}
-            onRequestSelect={handleRequestSelect}
-            onImport={() => setShowImportModal(true)}
-            currentRequest={activeRequest}
-          />
-        )}
-        <main className="flex-1 flex flex-col">
-        <TopBar
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-          setShowSaveRequestModal={setShowSaveRequestModal}
-        />
-        
-          <div className="flex-1 overflow-auto p-4">
-            {activeTab === 'single' ? (
-              <>
-                <RequestPanel
-                  request={activeRequest}
-                  setRequest={setActiveRequest}
-                  onSend={handleSend}
-                  loading={loading}
-                  response={response}
+        <div className="relative">
+            <div className="sticky top-0">
+              <TopNavBar></TopNavBar>
+            </div>
+            <div className="flex bg-gray-50 overflow-y-auto h-[calc(100vh-4rem)]">
+              <Sidebar onCollectionsClick={() => setShowCollections(!showCollections)} />
+              {showCollections && (
+                <CollectionsSidebar
+                  collections={collections}
+                  onCollectionCreate={handleCollectionCreate}
+                  onCollectionUpdate={handleCollectionUpdate}
+                  onCollectionDelete={handleCollectionDelete}
+                  onRequestSelect={handleRequestSelect}
+                  onImport={() => setShowImportModal(true)}
+                  currentRequest={activeRequest}
                 />
-                <ResponsePanel response={response} />
-              </>
-            ) : (
-              <RequestChain
-                onExecuteChain={executeChain}
-                responses={chainResponses}
-                collections={collections}
-                onRequestSelect={handleRequestSelect}
-              />
-            )}
+              )}
+                <main className="flex-1 flex flex-col">
+                <TopBar
+                  activeTab={activeTab}
+                  setActiveTab={setActiveTab}
+                  setShowSaveRequestModal={setShowSaveRequestModal}
+                />
+          
+                <div className="flex-1 overflow-auto p-4">
+                  {activeTab === 'single' ? (
+                    <>
+                      <RequestPanel
+                        request={activeRequest}
+                        setRequest={setActiveRequest}
+                        onSend={handleSend}
+                        loading={loading}
+                        response={response}
+                      />
+                      <ResponsePanel response={response} />
+                    </>
+                  ) : (
+                    <RequestChain
+                      onExecuteChain={executeChain}
+                      responses={chainResponses}
+                      collections={collections}
+                      onRequestSelect={handleRequestSelect}
+                    />
+                  )}
+                </div>
+               </main>
+  
+              {showImportModal && (
+                <ImportModal
+                  isOpen={showImportModal}
+                  onClose={() => setShowImportModal(false)}
+                  onImport={handleImport}
+                />
+              )}
+        
+              {showSaveRequestModal && (
+                <RequestModal
+                  isOpen={showSaveRequestModal}
+                  onClose={() => setShowSaveRequestModal(false)}
+                  onSave={handleSaveRequest}
+                  currentRequest={activeRequest}
+                  collections={collections}
+                  onCollectionCreate={handleCollectionCreate}
+                />
+              )}
           </div>
-        </main>
-  
-        {showImportModal && (
-          <ImportModal
-            isOpen={showImportModal}
-            onClose={() => setShowImportModal(false)}
-            onImport={handleImport}
-          />
-        )}
-  
-        {showSaveRequestModal && (
-          <RequestModal
-            isOpen={showSaveRequestModal}
-            onClose={() => setShowSaveRequestModal(false)}
-            onSave={handleSaveRequest}
-            currentRequest={activeRequest}
-            collections={collections}
-            onCollectionCreate={handleCollectionCreate}
-          />
-        )}
-      </div>
+        </div>
       } />
-    
-
-    
-
     </Routes>
   );
 }
