@@ -123,7 +123,7 @@ const RequestPanel: React.FC<RequestPanelProps> = ({
               GraphQL
             </label>
             <button
-              className="bg-blue-500 text-white px-4 py-2 rounded-md flex items-center space-x-2 hover:bg-blue-600 disabled:opacity-50"
+              className="bg-blue-500 text-white px-4 py-2 rounded-md flex items-center space-x-2 hover:bg-blue-600"
               onClick={onSend}
               disabled={loading || !request.url || (request.method !== 'GET' && jsonError !== null)}
             >
