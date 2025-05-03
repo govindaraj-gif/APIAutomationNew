@@ -38,6 +38,8 @@ function App() {
     graphQLVariables: ''
   });
 
+  console.log('hello')
+
   const [response, setResponse] = useState<Response | null>(null);
   const [chainResponses, setChainResponses] = useState<ChainResponse[]>([]);
   const [loading, setLoading] = useState(false);
