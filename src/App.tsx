@@ -350,9 +350,9 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/login" replace />} />
-      <Route path="/login" element={<AuthModal />} />
-      <Route path="/api-test" element={
+      {/* <Route path="/" element={<Navigate to="/login" replace />} />
+      <Route path="/login" element={<AuthModal />} /> */}
+      <Route path="/" element={
         <div className="relative">
             <div className="sticky top-0">
               <TopNavBar></TopNavBar>
