@@ -23,6 +23,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import AuthModal, { Login } from './features/auth/Login';
 import TopBar from './features/api-test/Topbar';
 import TopNavBar from './layouts/TopNavBar';
+import Footer from './layouts/Footer';
 
 const COLLECTIONS_STORAGE_KEY = 'api_collections';
 
@@ -398,6 +399,7 @@ function App() {
                     />
                   )}
                 </div>
+                <Footer/>
                </main>
   
               {showImportModal && (
