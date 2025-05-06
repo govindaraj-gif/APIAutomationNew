@@ -9,14 +9,14 @@ import { NotificationProvider } from './context/NotificationContext.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ToastProvider>
       <BrowserRouter>
-      <ApiProvider>
-        <NotificationProvider userId={1}>
-          <App />
-        </NotificationProvider>
-      </ApiProvider>
-      </BrowserRouter>
-    </ToastProvider>
+      <ToastProvider>
+        <ApiProvider>
+          <NotificationProvider userId={1}>
+            <App />
+          </NotificationProvider>
+        </ApiProvider>
+      </ToastProvider>
+    </BrowserRouter>
   </StrictMode>
 );
