@@ -11,11 +11,11 @@ const Sidebar: React.FC<SidebarProps> = ({ onCollectionsClick }) => {
 
   return (
     <>
-      <aside className="w-16 bg-gray-800 text-white flex flex-col">
+      <aside className="w-16 bg-white text-gray-800 flex flex-col border-r">
         <div className="flex-1 overflow-auto">
           <div className="p-2">
             <button
-              className="flex flex-col items-center justify-center w-full p-2 hover:bg-gray-700 rounded cursor-pointer"
+              className="flex flex-col items-center justify-center w-full p-2 rounded cursor-pointer"
               onClick={onCollectionsClick}
               title="Collections"
             >
@@ -23,14 +23,14 @@ const Sidebar: React.FC<SidebarProps> = ({ onCollectionsClick }) => {
               <span className="text-xs mt-1">Collections</span>
             </button>
             <button
-              className="flex flex-col items-center justify-center w-full p-2 hover:bg-gray-700 rounded cursor-pointer"
+              className="flex flex-col items-center justify-center w-full p-2 rounded cursor-pointer"
               title="History"
             >
               <History size={20} />
               <span className="text-xs mt-1">History</span>
             </button>
             <button
-              className="flex flex-col items-center justify-center w-full p-2 hover:bg-gray-700 rounded cursor-pointer"
+              className="flex flex-col items-center justify-center w-full p-2 rounded cursor-pointer"
               onClick={() => setIsDataRepoOpen(true)}
               title="Data Repo"
             >

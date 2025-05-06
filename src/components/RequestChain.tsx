@@ -415,7 +415,7 @@ const RequestChain: React.FC<RequestChainProps> = ({
             <button
               onClick={executeChain}
               disabled={requests.length === 0}
-              className="px-3 py-1.5 text-sm bg-green-50 text-green-600 rounded-md hover:bg-green-100 flex items-center gap-1 disabled:opacity-50"
+              className="px-3 py-1.5 text-sm bg-green-50 text-green-600 rounded-md hover:bg-green-100 flex items-center gap-1"
             >
               <Play size={16} />
               Execute Chain

@@ -62,7 +62,7 @@ const NotificationBell: React.FC = () => {
 
   return (
     <BellContainer>
-      <FaBell onClick={toggleDropdown} className="text-white hover:text-gray-400" size={20}>
+      <FaBell onClick={toggleDropdown} className="text-black hover:text-gray-400" size={20}>
         <IoMdNotifications />
         {unreadCount > 0 && (
           <NotificationBadge>
