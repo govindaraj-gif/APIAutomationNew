@@ -5,15 +5,15 @@ import { NotificationProvider } from '../context/NotificationContext';
 
 const TopNavbar: React.FC = () => {
   return (
-        <nav className="bg-gray-800 p-4">
+        <nav className="bg-white border-b p-4 text-black">
             <div className="flex items-center justify-between">
-                <div className="text-white text-xl">My App</div>
+                <div className="text-xl">My App</div>
                 <div className="flex items-center space-x-4">
-                <button className="text-white hover:text-gray-400">
+                <button className="text-black hover:text-gray-400">
                     <FaCog size={20} />
                 </button>
                 <NotificationBell/>
-                <button className="text-white hover:text-gray-400">
+                <button className="text-black hover:text-gray-400">
                     <FaUser size={20} />
                 </button>
                 </div>
